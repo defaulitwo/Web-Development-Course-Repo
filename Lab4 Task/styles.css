@@ -1,0 +1,106 @@
+*
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: #EEF2FE;
+    min-height: 100vh;
+}
+
+.main-box
+{
+    background-color: #FFFFFF;
+    min-width: 500px;
+    /* justify-self: center; */
+    /* margin: 50px; */
+    padding: 20px;
+    border-radius: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+.main-box h2
+{
+    margin: 0;
+}
+
+.task-input-box
+{
+    margin-top: 10px;
+    display: flex;
+    border-radius: 8px;
+    justify-content: space-between;
+}
+
+.task-input-box input
+{
+    border-color: rgb(225, 225, 225);
+    border-style: solid;
+    padding: 8px;
+    flex-grow: 1;
+    border-radius: inherit;
+}
+
+.task-input-box button
+{
+    border: none;
+    padding: 0 12px;
+    border-radius: inherit;
+    background-color: #3B82F6;
+    color: white;
+    transition: all 0.2s ease-in-out;
+    margin-left: 6px;
+}
+
+.task-input-box button:hover
+{
+    background-color: #2858a5;
+    cursor: pointer;
+}
+
+.filter-box
+{
+    display: flex;
+    margin-top: 12px;
+    gap: 20px;
+    justify-content: center;
+}
+
+.filter-box button
+{
+    border: 0;
+    background-color: #00000000;
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: #777A86;
+    cursor: pointer;
+}
+
+.filter-button-active
+{
+    background-color: #E7F0FE;
+    color: #5391F6;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border-color: #3B82F6;
+    border-style: solid;
+    text-decoration: underline;
+}
+
+.task
+{
+    background-color: rgb(225, 225, 225);
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+.task:hover
+{
+    cursor: pointer;
+}
