@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        body {
+            color: black;
+            text-align: center;
+            align-content: center;
+            align-items: center;
+            align-self: center;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: cornflowerblue;
+            justify-content: center;
+            display: flex;
+        }
+
+        .greetingArea {
+            padding: 25px;
+            text-align: center;
+            align-content: center;
+            align-items: center;
+            width: auto;
+            background-color: white;
+            margin-top: 5%;
+            border-radius: 15px;
+            min-width: 300px;
+        }
+
+        .greetingArea button
+        {
+            background-color: midnightblue;
+            color: white;
+            border-radius: 5px;
+            line-height: 30px;
+            width: 60px;
+            border: 0px;
+        }
+
+        .greetingArea input
+        {
+            color: gray;
+            border-radius: 5px;
+            line-height: 30px;
+            border: 0px;
+            padding-left: 5px;
+            background-color: rgb(233, 233, 233);
+            width: auto;
+        }
+
+        .greetingArea li
+        {
+            padding: 15px;
+            text-align: center;
+            align-content: center;
+            align-items: center;
+            width: 300px;
+            background-color: rgb(157, 182, 230);
+            margin-top: 5%;
+            border-radius: 5px;
+        }
+
+        .greetingArea li:hover
+        {
+            padding: 15px;
+            text-align: center;
+            align-content: center;
+            align-items: center;
+            width: 300px;
+            background-color: rgb(124, 143, 179);
+            margin-top: 5%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<html>
+    <body>
+        <div class="greetingArea">
+            <h1 id='title'>Welcome</h1>
+            <input id='name' placeholder='Your name'/>
+            <button id = 'greet'>Greet</button>
+            <ul id='list'>
+            </ul>
+        </div>
+
+        <script>
+            function addName() {
+                const input = document.getElementById('name')
+                const name = input.value.trim();
+                if (!name) {
+                    document.getElementById('title').textContent = "Enter your name"
+                    return;
+                }
+                document.getElementById('title').textContent = `Hello, ${name}!`;
+                const li = document.createElement('li');
+                li.textContent = name;
+                li.className = 'listItem'
+                document.getElementById('list').appendChild(li);
+                input.value = '';
+            }
+
+            function removeName(e) {
+                if (e.target.nodeName === 'LI') {
+                    const name = e.target.textContent;
+                    document.getElementById('title').textContent = `Goodbye, ${name}`;
+                    e.target.remove();
+                }
+            }
+
+            document.getElementById('greet').addEventListener(
+                'click',
+                addName
+            )
+
+            document.getElementById('list').addEventListener(
+                'click',
+                removeName
+            )
+        </script>
+    </body>
+</html>
