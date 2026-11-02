@@ -7,12 +7,7 @@ class Task
     }
 }
 
-let tasks = [
-    // {
-    //     "isActive": true,
-    //     "text": "Hello world"
-    // }
-];
+let tasks = [];
 
 const FILTER_ALL = 0;
 const FILTER_ACTIVE = 1;
@@ -24,12 +19,12 @@ const input_textbox = document.getElementById("input_textbox");
 const filter_all = document.getElementById("filter_all");
 const filter_active = document.getElementById("filter_active");
 const filter_completed = document.getElementById("filter_completed");
-const task_view = document.getElementById("task_view");
+const task_list = document.getElementById("task_list");
 
 function render()
 {
-    tasks.sort((a, b) =>  b.isActive - a.isActive)
-    task_view.replaceChildren(); // clear tasks
+    tasks.sort((a, b) =>  b.isActive - a.isActive) // sort tasks by active first
+    task_list.replaceChildren(); // clear tasks
     let filtered_tasks = tasks;
     if (current_filter == FILTER_ACTIVE)
         filtered_tasks = tasks.filter(task => task.isActive);
@@ -37,15 +32,19 @@ function render()
         filtered_tasks = tasks.filter(task => !task.isActive);
     for (let index = 0; index < filtered_tasks.length; index++) 
     {
-        const element = filtered_tasks[index];
+        const task = filtered_tasks[index];
         const newDiv = document.createElement("div");
-        task_view.appendChild(newDiv);
+        task_list.appendChild(newDiv);
         newDiv.className = "task";
-        newDiv.textContent = `${element.text}`;
+        newDiv.textContent = `${task.text}`;
         newDiv.addEventListener("click", task_clicked);
-        if (element.isActive) newDiv.style = "background-color: #d0fdb3";
+        newDiv.addEventListener("contextmenu", (event) => {
+            event.preventDefault(); // disable right click menu
+            remove_task(event);
+        });
+        if (task.isActive) newDiv.style = "background-color: #d0fdb3";
         else newDiv.style = "text-decoration: line-through;";
-        element.linkedDiv = newDiv;
+        task.linkedDiv = newDiv;
     }
 }
 
@@ -57,7 +56,7 @@ function add_task()
         tasks.push(
             newTask
         )
-        input_textbox.value = ""
+        input_textbox.value = "";
         render();
     }
 }
@@ -69,6 +68,12 @@ function task_clicked(event)
         if (event.target === task.linkedDiv)
             task.isActive = !task.isActive;
     }
+    render();
+}
+
+function remove_task(event)
+{
+    tasks = tasks.filter(task => task.linkedDiv !== event.target);
     render();
 }
 
