@@ -1,0 +1,10 @@
+.Header
+{
+    background-color: rgb(80, 9, 9);
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    position: sticky;
+}
